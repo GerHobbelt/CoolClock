@@ -395,17 +395,14 @@ CoolClock.prototype = {
 			this.radialLineAtAngle(this.tickAngle(secA),skin.secondHand);
 		}
 
-		// Second hand decoration doesn't render right in IE so lets turn it off
-		if  (!CoolClock.config.isIE) {
-			if (skin.hourDecoration)
-				this.radialLineAtAngle(this.tickAngle(hourA), skin.hourDecoration);
-				
-			if (skin.minDecoration)
-				this.radialLineAtAngle(this.tickAngle(minA), skin.minDecoration);
+    if (skin.hourDecoration)
+      this.radialLineAtAngle(this.tickAngle(hourA), skin.hourDecoration);
+      
+    if (skin.minDecoration)
+      this.radialLineAtAngle(this.tickAngle(minA), skin.minDecoration);
 
-			if (this.showSecondHand && skin.secondDecoration)
-				this.radialLineAtAngle(this.tickAngle(secA),skin.secondDecoration);
-		}
+    if (this.showSecondHand && skin.secondDecoration)
+      this.radialLineAtAngle(this.tickAngle(secA),skin.secondDecoration);
 
 		// and remember we did this, so we don't have to do the same all over again:
 		this.lastDrawnState = h;
