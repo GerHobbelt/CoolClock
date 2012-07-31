@@ -376,23 +376,35 @@ CoolClock.prototype = {
 				skin.digital
 			);
 		}
+		
+		var sm = (this.smoothMinutesHand && skin.smoothMinutesHand !== false);          // when this setting isn't in the skin, assume TRUE for the skin.
+		var hourA = (hour%12)*5 + min/12.0,
+		    minA = min + (sm ? sec/60.0 : 0),
+		    secA = sec;
 
 		// Draw the hands
 		if (skin.hourHand) {
-			this.radialLineAtAngle(this.tickAngle(((hour%12)*5 + min/12.0)),skin.hourHand);
+			this.radialLineAtAngle(this.tickAngle(hourA),skin.hourHand);
 		}
 
 		if (skin.minuteHand) {
-			var sm = (this.smoothMinutesHand && skin.smoothMinutesHand !== false);          // when this setting isn't in the skin, assume TRUE for the skin.
-			this.radialLineAtAngle(this.tickAngle((min + (sm ? sec/60.0 : 0))),skin.minuteHand);
+			this.radialLineAtAngle(this.tickAngle(minA),skin.minuteHand);
 		}
 
 		if (this.showSecondHand && skin.secondHand) {
-			this.radialLineAtAngle(this.tickAngle(sec),skin.secondHand);
+			this.radialLineAtAngle(this.tickAngle(secA),skin.secondHand);
 		}
 
-		if (this.showSecondHand && skin.secondDecoration) {
-			this.radialLineAtAngle(this.tickAngle(sec),skin.secondDecoration);
+		// Second hand decoration doesn't render right in IE so lets turn it off
+		if  (!CoolClock.config.isIE) {
+			if (skin.hourDecoration)
+				this.radialLineAtAngle(this.tickAngle(hourA), skin.hourDecoration);
+				
+			if (skin.minDecoration)
+				this.radialLineAtAngle(this.tickAngle(minA), skin.minDecoration);
+
+			if (this.showSecondHand && skin.secondDecoration)
+				this.radialLineAtAngle(this.tickAngle(secA),skin.secondDecoration);
 		}
 
 		// and remember we did this, so we don't have to do the same all over again:
