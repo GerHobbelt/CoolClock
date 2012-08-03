@@ -3,6 +3,8 @@
  * CoolClock 2.1.4
  * Copyright 2010, Simon Baird
  * Released under the BSD License.
+ *
+ * Display an analog clock using canvas.
  * http://randomibis.com/coolclock/
  *
  * Revised to use the Raphael svg library instead of canvas.
@@ -55,7 +57,7 @@ CoolRaphaelClock.prototype = {
     // Draw the outer edge of the clock
 		if (skin.outerBorder)
 			this.outerBorder = this.fullCircleAt(this.renderRadius, this.renderRadius, skin.outerBorder);
-		
+
 		// Prepare for background autofill (not in the original CoolClock)
 		if (skin.outerBorder && skin.outerBorder.autoFill)
 		  this.autoFill = true;
@@ -118,7 +120,7 @@ CoolRaphaelClock.prototype = {
 		// should we be running the clock?
 		this.active = true;
 		this.tickTimeout = null;
-    
+
 		// Keep track of this object
 		CoolClock.config.clockTracker[this.canvasId] = this;
 

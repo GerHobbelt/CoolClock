@@ -136,8 +136,8 @@ CoolClock.prototype = {
 		if (!CoolClock.config.tickInterval) {
 			CoolClock.config.tickInterval = setInterval(function() {
 				// for each clock, fire the redraw/render code at least ten times as fast as we do expect visual change:
-				// the render optimization will take of that, while we ensure a superb visual result over time
-				// (less frequest render attempts result in a visual 'jitter' of the second hand, for one)
+				// the render optimization will take care of that, while we ensure a superb visual result over time
+				// (less frequent render attempts result in a visual 'jitter' of the second hand, for one)
 				for (var key in CoolClock.config.clockTracker)
 				{
 					var cc = CoolClock.config.clockTracker[key];
@@ -376,7 +376,7 @@ CoolClock.prototype = {
 				skin.digital
 			);
 		}
-		
+
 		var sm = (this.smoothMinutesHand && skin.smoothMinutesHand !== false);          // when this setting isn't in the skin, assume TRUE for the skin.
 		var hourA = (hour%12)*5 + min/12.0,
 		    minA = min + (sm ? sec/60.0 : 0),
@@ -397,7 +397,7 @@ CoolClock.prototype = {
 
     if (skin.hourDecoration)
       this.radialLineAtAngle(this.tickAngle(hourA), skin.hourDecoration);
-      
+
     if (skin.minDecoration)
       this.radialLineAtAngle(this.tickAngle(minA), skin.minDecoration);
 
